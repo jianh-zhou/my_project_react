@@ -1,0 +1,26 @@
+/* 左上角按钮 */
+.left {
+  color: #000;
+}
+.verify-phone-input {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 20px;
+  margin-top: 40px;
+}
+a.warning-btn {
+  border-radius: 30px;
+  width: 90%;
+  margin: 40px auto 0;
+}
+.tipcs {
+  display: block;
+  text-align: left;
+}
+.protocol {
+  color: #000;
+}
+.important {
+  text-decoration: underline;
+}

@@ -9,6 +9,12 @@
       ],
       "@utils/*": [
         "./src/utils/*"
+      ],
+      "@api/*": [
+        "./src/api/*"
+      ],
+      "@comp/*": [
+        "./src/components/*"
       ]
     },
     "baseUrl": ".",
