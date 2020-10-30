@@ -1,6 +1,7 @@
 /* 左上角按钮 */
-.left {
-  color: #000;
+.verifyPhone {
+  height: 100%;
+  background-color: #fff;
 }
 .verify-phone-input {
   display: flex;

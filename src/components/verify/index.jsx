@@ -6,19 +6,17 @@ export default class Verify extends Component {
   // 组件加载完毕的生命周期回调函数
   componentDidMount() {
     window.verifyCallback = async (res) => {
-      // console.log(res)
       if (res.ret === 0) {
         try {
           await reqVerifyCode(res.randstr, res.ticket)
-          // console.log(1);
-          await this.props.next()
+          this.props.next()
         } catch (err) {
-          console.log(err)
           Toast.fail(err, 3)
         }
       }
     }
   }
+
   render() {
     const { disabled } = this.props
     return (

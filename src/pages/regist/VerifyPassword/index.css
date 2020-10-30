@@ -1,0 +1,44 @@
+.verify-message-img {
+  text-align: center;
+  padding: 10px;
+}
+.verify-message-img img {
+  width: 88px;
+  height: 70px;
+}
+.verify-password-tips {
+  text-align: center;
+  /* padding:0 10px ; */
+  color: #333;
+}
+/* .verify-code-contain {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+} */
+.verify-code-contain .verify-code-btn {
+  font-size: 14px;
+  line-height: 35px;
+  height: 34px;
+  width: 130px;
+  background-color: pink;
+  color: #000;
+  border-radius: 20px;
+}
+.verify-code-query {
+  color: #999;
+  font-size: 14px;
+
+  padding-left: 10px;
+}
+.verify-code-query a {
+  color: blue;
+}
+span.verify-password-btn {
+  font-size: 24px;
+}
+.verify-password-tip{
+  color: #999;
+  padding: 10px;
+  font-size: 14px;
+}

@@ -2,7 +2,7 @@
 import axios from 'axios'
 const request = axios.create({
   baseURL: '/',//默认接口路径
-  timeout: 1,//超时时间
+  timeout: 10000,//超时时间
 })
 const messages = {
   401: '没有对应权限',
@@ -24,6 +24,7 @@ request.interceptors.response.use((response) => {
   if (response.data.code === 20000) {
     return response.data.data
   } else {
+    // console.log(response.data.message);
     // 如果功能为完成,则返回一个失败的promise对象,并把详细的错误信息作为参数
     return Promise.reject(response.data.message)
   }
@@ -41,7 +42,7 @@ request.interceptors.response.use((response) => {
       // 服务器没有返回响应,请求超时(timeOut),或者网络错误(network error)
       // console.dir(err);
       if (err.message.indexOf("Network err")) {
-        // console.log(err);
+        console.log(err);
         message = "暂无网络,请打开网路试试"
       }
       else if (err.message.indexOf("timeout")) {

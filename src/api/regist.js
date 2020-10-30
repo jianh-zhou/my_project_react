@@ -7,3 +7,16 @@ export const reqRegistPhone = (phone) => request({
   url: `${path}/verify_phone`,
   data: { phone }
 })
+// 暴露验证码是否正确的api接口函数
+export const reqVerifyMessageCode = (phone, code) => request({
+  method: 'POST',
+  url: `${path}/verify_code`,
+  data: { phone, code }
+})
+// 暴露注册手机号的api的接口函数
+export const reqVerifyUser = (phone, password) => request({
+  method: 'POST',
+  url: `${path}/user`,
+  data: { phone, password }
+
+})

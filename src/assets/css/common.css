@@ -1,4 +1,11 @@
 html,
+body,
+#root {
+  height: 100%;
+}
 body {
-  background-color: #fff;
+  font-size: 16px;
+}
+.left {
+  color: #000;
 }

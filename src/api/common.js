@@ -8,5 +8,8 @@ export const reqVerifyCode = (randStr, ticket) =>
       randStr, ticket
     }
   })
-
+export const reqCountryData = () => request({
+  method: 'GET',
+  url: `${url}/countryData`
+})
 

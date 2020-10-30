@@ -6,12 +6,15 @@ import { createForm } from 'rc-form'
 import './index.css'
 // 引入对应的验证手机号的api接口函数
 import { reqRegistPhone } from '@api/regist'
+// 引入发送验证码码的api接口函数
+import { reqSendCode } from '@api/login'
 // 引入全局公共组件的验证组件
 import Verify from '@comp/verify'
 class Verifyphone extends Component {
   // 定义对应的状态数据
   state = {
     isDisabled: true,
+    num: this.props.location.state || '+86',
   }
   // 组件挂载完毕的生命周期回调函数
   componentDidMount() {
@@ -70,34 +73,61 @@ class Verifyphone extends Component {
     try {
       // 获取文本框中的手机号码
       const phone = this.props.form.getFieldProps('phone').value
-      // console.log(phone, 1)
       // 发送请求
       await reqRegistPhone(phone)
-      // console.log(result)
-      // Toast.success('', 1)
+      //调用发送验证码的方法
+      this.sendCode(phone)
     } catch (err) {
       // console.log(err)
       Toast.fail(err.message, 1)
     }
+  }
+
+  // 发送验证码
+  sendCode = async (phone) => {
+    Modal.alert('', `我们将发送短信/语音验证码至：${phone}`, [
+      {
+        text: '取消',
+      },
+      {
+        text: '确定',
+        onPress: async () => {
+          // 获取文本框中的手机号码
+          const phone = this.props.form.getFieldProps('phone').value
+          try {
+            console.log(phone)
+            // 调用发送验证码的api接口函数
+            await reqSendCode(phone)
+            // 跳转到输入验证码的界面
+            this.props.history.push(`/regist/verifycode`, { phone })
+          } catch (e) {
+            Toast(e, 3)
+          }
+        },
+      },
+    ])
+  }
+
+  // 跳转到对应的电话地区
+  goToCuntry = () => {
+    // 获取当前的路由地址
+    const url = '/regist/verifyphone'
+    this.props.history.push('/common/countrypicker', url)
   }
   render() {
     // 获取状态数据中的对应事件
     const { isDisabled } = this.state
     const { getFieldProps } = this.props.form
     return (
-      <div>
+      <div className="verifyPhone">
         <WingBlank>
           {/* 头部 */}
-          <NavBar
-            mode="light"
-            icon={<Icon type="left" className="left" />}
-            onLeftClick={() => console.log('onLeftClick')}
-          >
+          <NavBar mode="light" icon={<Icon type="left" className="left" />}>
             硅谷注册
           </NavBar>
           {/* 手机号输入框 */}
           <div className="verify-phone-input">
-            <span>+86</span>
+            <span onTouchEnd={this.goToCuntry}>{this.state.num}</span>
             <Icon type="down"></Icon>
             <InputItem
               clear
@@ -114,25 +144,6 @@ class Verifyphone extends Component {
           </div>
           {/* 按钮 */}
           <Verify disabled={isDisabled} next={this.next} />
-          {/* <Button
-            style={{ display: isDisabled ? 'block' : 'none' }}
-            type="warning"
-            className="warning-btn"
-            disabled={isDisabled}
-            // onClick={this.next}
-          >
-            下一步
-          </Button>
-          <Button
-            type="warning"
-            className="warning-btn"
-            disabled={isDisabled}
-            // onClick={this.next}
-            style={{ display: !isDisabled ? 'block' : 'none' }}
-            {...verifyBtnProps}
-          >
-            下一步
-          </Button> */}
         </WingBlank>
       </div>
     )
