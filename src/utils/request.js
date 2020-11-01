@@ -35,7 +35,7 @@ request.interceptors.response.use((response) => {
       console.log(err.response);
       // 服务器有返回响应,但是是失败的
       // 401--> 为授权,不能进行访问(没有token等)  403--->禁止访问  404--->地址错误
-      if (message[err.response.status]) {
+      if (messages[err.response.status]) {
         message = err.response.message
       }
     } else {

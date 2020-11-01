@@ -8,6 +8,7 @@ import './index.css'
 import { reqRegistPhone } from '@api/regist'
 // 引入发送验证码码的api接口函数
 import { reqSendCode } from '@api/login'
+import { phoneReg } from '@utils/reg'
 // 引入全局公共组件的验证组件
 import Verify from '@comp/verify'
 class Verifyphone extends Component {
@@ -51,12 +52,12 @@ class Verifyphone extends Component {
   // 手机号码验证规则的检验
   validator = (rule, value, callback) => {
     // 设置对应的正则表达式
-    const reg = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/
+    // const reg = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/
     // 获取手机号
     // console.log(rule, value)
     let isDisabled = true
     // 判断手机号符合正则
-    if (reg.test(value)) {
+    if (phoneReg.test(value)) {
       // 让对应的下一步按钮可以点击
       isDisabled = false
     }

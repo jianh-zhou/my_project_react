@@ -14,6 +14,7 @@ import { reqVerifyMessageCode } from '@api/regist'
 import './index.css'
 import msg from '../../../assets/images/msg.png'
 import { createForm } from 'rc-form'
+import {codeReg} from '@utils/reg'
 // 引入组件Verify
 import Verify from '@comp/verify'
 // 定义总共的时间
@@ -63,9 +64,9 @@ class VerifyCode extends Component {
   }
   // 验证验证码的方法
   validator = (rules, value, callback) => {
-    const reg = /^\d{6}$/
+    // const reg = /^\d{6}$/
     let isDisabled = true
-    if (reg.test(value)) {
+    if (codeReg.test(value)) {
       isDisabled = false
     }
     this.setState({

@@ -7,3 +7,12 @@ export const reqSendCode = (phone) => request({
   url: `${path}/digits`,
   data: { phone }
 })
+
+// 验证手机号登录的api接口函数
+export const reqLoginPhone = (phone, code) => request({
+  method: 'POST',
+  url: `${path}/phone`,
+  data: {
+    phone, code
+  }
+})

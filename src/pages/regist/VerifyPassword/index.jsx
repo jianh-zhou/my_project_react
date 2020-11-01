@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { InputItem, WingBlank, Icon, NavBar ,Toast} from 'antd-mobile'
+import { InputItem, WingBlank, Icon, NavBar, Toast } from 'antd-mobile'
 import './index.css'
 import msg from '../../../assets/images/msg.png'
 import { createForm } from 'rc-form'
@@ -7,6 +7,7 @@ import { createForm } from 'rc-form'
 import Verify from '@comp/verify'
 // 引入注册账号的api接口函数
 import { reqVerifyUser } from '@api/regist'
+import { passwordReg } from '@utils/reg'
 class VerifyCode extends Component {
   //设置下一步按钮的禁用或者不禁用的状态数据
   state = {
@@ -16,9 +17,9 @@ class VerifyCode extends Component {
 
   // 验证验证码的方法
   validator = (rules, value, callback) => {
-    const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,20}$/
+    // const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,20}$/
     let isDisabled = true
-    if (reg.test(value)) {
+    if (passwordReg.test(value)) {
       isDisabled = false
     }
     this.setState({

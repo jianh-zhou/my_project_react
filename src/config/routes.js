@@ -6,9 +6,18 @@ import VerifyCode from '@pages/regist/VerifyCode'
 import VerifyPassword from '@pages/regist/VerifyPassword'
 // 引入城市数据展示组件
 import Country from '@comp/Country'
-// 引入登录组件
-import Login from '@pages/login'
+// 引入手机号码登录组件
+import PhoneLogin from '@pages/login/PhoneLogin'
+//引入密码登录组件
+import PasswordLogin from '@pages/login/PasswordLogin'
+//引入主页组件
+import Home from '@pages/Home'
 const routes = [
+  {
+    path: "/",
+    component: Home,
+    exact: true
+  },
   {
     path: "/regist/verifyphone",
     component: Verifyphone,
@@ -26,12 +35,17 @@ const routes = [
   },
   {
     path: '/login',
-    component: Login,
+    component: PhoneLogin,
     exact: true
   },
   {
     path: '/common/countrypicker',
     component: Country,
+    exact: true
+  },
+  {
+    path: '/login/pwd',
+    component: PasswordLogin,
     exact: true
   }
 ]
